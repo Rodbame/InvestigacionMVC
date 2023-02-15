@@ -1,4 +1,4 @@
-# Investigacion sobre el modelo en MVC
+# Investigacion sobre el modelo de MVC
 
 ## ¿Que es el MVC?
 El modelo vista controlador se basa en un estilo de arquitectura de software el cual separa el codigo en tres apartados diferentes, como lo seria los datos de la aplicacion, la intefaz del usuario, y la logica de control.
