@@ -17,9 +17,20 @@ El modelo es responsable de la gestión de los datos de la aplicación, así com
 
 - **Acceso a datos:** El modelo también se utiliza para acceder a los datos almacenados en la aplicación y proporcionarlos a la vista y el controlador.
 
-En general el modelo es utilizado en todo lo que seria la gestion de los datos y la logica del negocio de la aplicacion, este puede aplicarse para distintos ambitos, unos de los mas utilizados serian el hacer llamadas a las bases de datos para realizar las funciones de un crud que seria crear, leer, actualizar y eliminar
+En general el modelo es utilizado en todo lo que seria la gestion de los datos y la logica del negocio de la aplicacion, este puede aplicarse para distintos ambitos, unos de los mas utilizados serian el hacer llamadas a las bases de datos para realizar las funciones de un crud que seria crear, leer, actualizar y eliminar.
 
+##La infraestructura para el almacenamiento y recuperacion de datos
 
+La infraestructura para el almacenamiento y recuperación de datos dentro del modelo en MVC puede incluir diferentes tecnologías y herramientas, dependiendo del tipo de aplicación y de los requisitos de almacenamiento de datos. Algunos componentes comunes de esta capa pueden incluir:
+
+- Sistemas de gestión de bases de datos (DBMS): Estos son sistemas diseñados para almacenar y gestionar grandes cantidades de datos, proporcionando herramientas para la creación, modificación y eliminación de datos, así como para la consulta y recuperación de los mismos.
+
+- Modelos de datos: Estos son estructuras que representan los datos de la aplicación, y que pueden incluir tablas, clases, objetos o cualquier otro tipo de estructura de datos.
+
+- Capa de acceso a datos: Esta capa se encarga de gestionar la comunicación entre el modelo y la base de datos, proporcionando una interfaz para que el modelo pueda realizar operaciones de lectura, escritura y eliminación de datos.
+
+###Ejemplos:
+Un ejemplo simple de como es que se puede utilizar el modelo en un CRUD de productos
 ```modelo de un CRUD
 <?php
 //Se requiere el archivo que contiene la conexion de la base de datos
@@ -77,3 +88,34 @@ class Productos extends BD_PDO
 }
 
 ```
+
+Otro ejemplo de un uso del modelo pero ahora en JS seria el siguiente:
+```
+// Definimos la clase del modelo
+class Modelo {
+  // Creamos el constructor del modelo
+  constructor(parametro1, parametro2) {
+    // Inicializamos las propiedades con los valores de los parámetros
+    this.propiedad1 = parametro1;
+    this.propiedad2 = parametro2;
+  }
+
+  // Creamos los métodos de acceso a las propiedades del modelo
+  getPropiedad1() {
+    return this.propiedad1;
+  }
+
+  getPropiedad2() {
+    return this.propiedad2;
+  }
+
+  // Creamos un método para realizar una operación con el modelo
+  operacion() {
+    // Realizamos alguna operación con las propiedades del modelo
+    let resultado = this.propiedad1 * this.propiedad2;
+    // Retornamos el resultado de la operación
+    return resultado;
+  }
+}
+```
+Este ejemplo simplemente lo que hace es el obtener 2 parametros para despues darles un valor y realizar la operación que queramos realizar, en el caso de este ejemplo lo que se hace es obtener esos dos parametros con el fin de multiplicarlos, esto puede servir por ejemplo al momento de realizar una calculadora de practica o algo por el estilo.
