@@ -119,8 +119,6 @@ class Modelo {
 }
 ```
 Este ejemplo simplemente lo que hace es el obtener 2 parametros para despues darles un valor y realizar la operación que queramos realizar, en el caso de este ejemplo lo que se hace es obtener esos dos parametros con el fin de multiplicarlos, esto puede servir por ejemplo al momento de realizar una calculadora de practica o algo por el estilo.
-<<<<<<< HEAD
-
 # Investigacion sobre las vistas en el MVC
 
 ## ¿Que es la vista en MVC?
@@ -224,6 +222,13 @@ Primero tendriamos el codigo HTML con PHP para la generacion de las columnas de 
 ```
 #### Parte del modelo
 ```
+	//Funcion para traer el listado de la tabla donde se muestren todos los productos de la base de datos
+	function Buscartodo()
+	{
+		$result = $this->Ejecutar_Instruccion("Select productos.id_producto,productos.Nombre,productos.Cantidad,concat(proveedores.Nombres,' ',proveedores.Apellido_p,' ',proveedores.Apellido_m) as Nombre_prov,categorias.Nombre from productos INNER JOIN proveedores ON productos.id_proveedor=proveedores.id_proveedor INNER JOIN categorias ON productos.id_categoria=categorias.id_categoria;");
+		return $result;
+	}
+	//Generador de la tabla con los resultados
 	function Tabla_gen($result)
 	{
 		$tabla = "";
