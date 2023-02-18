@@ -119,3 +119,128 @@ class Modelo {
 }
 ```
 Este ejemplo simplemente lo que hace es el obtener 2 parametros para despues darles un valor y realizar la operación que queramos realizar, en el caso de este ejemplo lo que se hace es obtener esos dos parametros con el fin de multiplicarlos, esto puede servir por ejemplo al momento de realizar una calculadora de practica o algo por el estilo.
+
+# Investigacion sobre las vistas en el MVC
+
+## ¿Que es la vista en MVC?
+La vista en MVC es la capa de presentación de una aplicación que se encarga de mostrar los datos y la interfaz de usuario, mientras que el controlador es el intermediario entre la vista y el modelo, y el modelo es responsable de la lógica de negocios y el acceso a los datos.
+
+## Ejemplo de Vista 
+Este simple ejemplo de la vista de un registro de usuarios mostraria principalmente lo que seria la vista de los usuarios que desean registrarse
+```
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Formulario de registro</title>
+	<!-- Agregamos los estilos de Bootstrap -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 offset-md-3">
+				<h1>Formulario de registro</h1>
+				<!-- Creamos un formulario para el registro de usuarios -->
+				<form method="post" action="/registro">
+					<!-- Agregamos un campo para el nombre de usuario -->
+					<div class="form-group">
+						<label for="nombre_usuario">Nombre de usuario</label>
+						<input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" placeholder="Ingresa tu nombre de usuario">
+					</div>
+					<!-- Agregamos un campo para la dirección de correo electrónico -->
+					<div class="form-group">
+						<label for="email">Correo electrónico</label>
+						<input type="email" class="form-control" id="email" name="email" placeholder="Ingresa tu dirección de correo electrónico">
+					</div>
+					<!-- Agregamos un campo para la contraseña -->
+					<div class="form-group">
+						<label for="contrasena">Contraseña</label>
+						<input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Ingresa tu contraseña">
+					</div>
+					<!-- Agregamos un botón para enviar el formulario -->
+					<button type="submit" class="btn btn-primary">Registrarse</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Agregamos los scripts de Bootstrap -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+
+```
+
+Y el resultado de esta pagina nos daria la siguiente interfaz:
+
+<image src="./img/vista.png" alt="Muestra del ejemplo anterior">
+
+Esta vista seria con la que el usuario podria interactuar y donde mediante los inputs llenaria la informacion necesaria para crear el usuario en este caso, pudiendo asi enviar la informacion por el controlador y este mandando esos datos a el modelo para poder realizar por ejemplo un insert en mysql.
+
+## Representacion de datos hacia el usuario
+Otro uso que nos brinda el modelo ya que interactua directamente con la base de datos seria el crearnos la parte de tabla donde se muestren los datos de la base de datos.
+
+### Ejemplo:
+Primero tendriamos el codigo HTML con PHP para la generacion de las columnas de las tablas, en esta misma tabla podemos observar que se genera el rellenado de la tabla mediante PHP en la parte de **```<?php echo $datos; ?>```** que es tomada del controlador y el controlador la toma desde el modelo.
+
+#### Parte de la vista
+```
+	<table class="table table-striped">
+			<tr>
+				<td>Num</td>
+				<td>Nombre</td>
+				<td>Cantidad</td>
+				<td>Proveedor</td>
+				<td>Categoria</td>
+				<?php 
+					 if ($_SESSION['privilegio']=='Admin') 
+					 {
+				?>
+				<td colspan="2" align="center">Accion</td>
+				
+					 
+				<?php } ?>
+				
+				<?php echo $datos; ?>
+		</table>
+	</div>
+```
+#### Parte del controllador
+```
+	if (isset($_POST['btnbuscar'])) 
+		{
+			$buscar = $_POST['txtbuscar'];
+			$result = $obj->Buscar($buscar);
+			$datos = $obj->Tabla_gen($result);
+		}
+		else
+		{
+			$result = $obj->Buscartodo();
+			$datos = $obj->Tabla_gen($result);
+		}
+```
+#### Parte del modelo
+```
+	function Tabla_gen($result)
+	{
+		$tabla = "";
+		foreach ($result as $renglon) {
+			$tabla .= "<tr>";
+			$tabla .= '<td>' . $renglon[0] . '</td>';
+			$tabla .= '<td>' . $renglon[1] . '</td>';
+			$tabla .= '<td>' . $renglon[2] . '</td>';
+			$tabla .= '<td>' . $renglon[3] . '</td>';
+			$tabla .= '<td>' . $renglon[4] . '</td>';
+			if ($_SESSION['privilegio'] == 'Admin') {
+				$tabla .= '<td><input type="button" id="btneliminar" class="btn" name="btneliminar" value="Eliminar" onclick="javascript: eliminar(' . $renglon[0] . ');"></td>';
+				$tabla .= '<td><input type="button" id="btnmodificar" class="btn" name="btnmodificar" value="Modificar" onclick="javascript: modificar(' . $renglon[0] . ');"></td>';
+			}
+			$tabla .= '</tr>';
+		}
+		return $tabla;
+	}
+```
+Esto en conjunto con  nos generaria una tabla como la siguiente:
+<image src="./img/ejemplovista.png" alt="Muestra del ejemplo anterior">
