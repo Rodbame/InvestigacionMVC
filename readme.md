@@ -290,6 +290,7 @@ En el patrón de diseño MVC (Modelo-Vista-Controlador), un controlador es una p
 <p style="text-align:justify">
 Este seria un ejemplo de un controlador en un MVC donde este necesita de la llamada del modelo para poder obtener los datos de la BD y tambien requiere a la vista para poder mandarle los datos y que los visualice el usuario, tambien teniendo una variable donde hace el llamado a los productos usando un metodo del modelo para poder	obtener esos datos de los productos.
 </p>
+
 ```
 <?php
 
