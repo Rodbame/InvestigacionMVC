@@ -1,14 +1,17 @@
 # Investigacion sobre el modelo de MVC
 
 ## ¿Que es el MVC?
+<p style="text-align:justify">
 El modelo vista controlador se basa en un estilo de arquitectura de software el cual separa el codigo en tres apartados diferentes, como lo seria los datos de la aplicacion, la intefaz del usuario, y la logica de control.
 
 Aunque en esta investigacion solo se manejara de manera mas especifica la parte del modelo.
-
+</p>
 ## ¿Que es el modelo en MVC?
+<p style="text-align:justify">
 El modelo es responsable de la gestión de los datos de la aplicación, así como de la lógica de negocio y del comportamiento de la aplicación. En otras palabras, el modelo representa la información subyacente y las reglas de negocio que se aplican a esa información. Por ejemplo, si se está diseñando una aplicación de gestión de pedidos, el modelo podría contener información sobre los productos, los clientes y los pedidos, así como reglas de negocio para validar los pedidos o para calcular los costos.
-
+</p>
 ## Aplicaciones del modelo
+
 - **Gestión de datos:** El modelo se utiliza para gestionar los datos de la aplicación, incluyendo la creación, lectura, actualización y eliminación de los mismos. El modelo también se encarga de aplicar las reglas de negocio y realizar la validación de los datos.
 
 - **Lógica de negocio:** El modelo también se utiliza para implementar la lógica de negocio de la aplicación, como el procesamiento de pagos, la validación de formularios, la generación de informes, entre otros.
@@ -17,11 +20,14 @@ El modelo es responsable de la gestión de los datos de la aplicación, así com
 
 - **Acceso a datos:** El modelo también se utiliza para acceder a los datos almacenados en la aplicación y proporcionarlos a la vista y el controlador.
 
+<p style="text-align:justify">
 En general el modelo es utilizado en todo lo que seria la gestion de los datos y la logica del negocio de la aplicacion, este puede aplicarse para distintos ambitos, unos de los mas utilizados serian el hacer llamadas a las bases de datos para realizar las funciones de un crud que seria crear, leer, actualizar y eliminar.
+</p>
 
 ## La infraestructura para el almacenamiento y recuperacion de datos
-
+<p style="text-align:justify">
 La infraestructura para el almacenamiento y recuperación de datos dentro del modelo en MVC puede incluir diferentes tecnologías y herramientas, dependiendo del tipo de aplicación y de los requisitos de almacenamiento de datos. Algunos componentes comunes de esta capa pueden incluir:
+</p>
 
 - Sistemas de gestión de bases de datos (DBMS): Estos son sistemas diseñados para almacenar y gestionar grandes cantidades de datos, proporcionando herramientas para la creación, modificación y eliminación de datos, así como para la consulta y recuperación de los mismos.
 
@@ -30,7 +36,9 @@ La infraestructura para el almacenamiento y recuperación de datos dentro del mo
 - Capa de acceso a datos: Esta capa se encarga de gestionar la comunicación entre el modelo y la base de datos, proporcionando una interfaz para que el modelo pueda realizar operaciones de lectura, escritura y eliminación de datos.
 
 ### Ejemplos:
+
 Un ejemplo simple de como es que se puede utilizar el modelo en un CRUD de productos
+
 ```modelo de un CRUD
 <?php
 //Se requiere el archivo que contiene la conexion de la base de datos
@@ -90,6 +98,7 @@ class Productos extends BD_PDO
 ```
 
 Otro ejemplo de un uso del modelo pero ahora en JS seria el siguiente:
+
 ```
 // Definimos la clase del modelo
 class Modelo {
@@ -118,14 +127,20 @@ class Modelo {
   }
 }
 ```
+<p style="text-align:justify">
 Este ejemplo simplemente lo que hace es el obtener 2 parametros para despues darles un valor y realizar la operación que queramos realizar, en el caso de este ejemplo lo que se hace es obtener esos dos parametros con el fin de multiplicarlos, esto puede servir por ejemplo al momento de realizar una calculadora de practica o algo por el estilo.
+</p>
 # Investigacion sobre las vistas en el MVC
 
 ## ¿Que es la vista en MVC?
+<p style="text-align:justify">
 La vista en MVC es la capa de presentación de una aplicación que se encarga de mostrar los datos y la interfaz de usuario, mientras que el controlador es el intermediario entre la vista y el modelo, y el modelo es responsable de la lógica de negocios y el acceso a los datos.
+</p>
 
-## Ejemplo de Vista 
+## Ejemplo de Vista
+
 Este simple ejemplo de la vista de un registro de usuarios mostraria principalmente lo que seria la vista de los usuarios que desean registrarse
+
 ```
 <!DOCTYPE html>
 <html>
@@ -175,16 +190,19 @@ Este simple ejemplo de la vista de un registro de usuarios mostraria principalme
 Y el resultado de esta pagina nos daria la siguiente interfaz:
 
 <image src="./img/vista.png" alt="Muestra del ejemplo anterior">
-
+<p style="text-align:justify">
 Esta vista seria con la que el usuario podria interactuar y donde mediante los inputs llenaria la informacion necesaria para crear el usuario en este caso, pudiendo asi enviar la informacion por el controlador y este mandando esos datos a el modelo para poder realizar por ejemplo un insert en mysql.
-
+</p>
 ## Representacion de datos hacia el usuario
+
+<p style="text-align:justify">
 Otro uso que nos brinda el modelo ya que interactua directamente con la base de datos seria el crearnos la parte de tabla donde se muestren los datos de la base de datos.
+</p>
 
 ### Ejemplo:
 Primero tendriamos el codigo HTML con PHP para la generacion de las columnas de las tablas, en esta misma tabla podemos observar que se genera el rellenado de la tabla mediante PHP en la parte de **```<?php echo $datos; ?>```** que es tomada del controlador y el controlador la toma desde el modelo.
-
 #### Parte de la vista
+
 ```
 	<table class="table table-striped">
 			<tr>
@@ -193,22 +211,24 @@ Primero tendriamos el codigo HTML con PHP para la generacion de las columnas de 
 				<td>Cantidad</td>
 				<td>Proveedor</td>
 				<td>Categoria</td>
-				<?php 
-					 if ($_SESSION['privilegio']=='Admin') 
+				<?php
+					 if ($_SESSION['privilegio']=='Admin')
 					 {
 				?>
 				<td colspan="2" align="center">Accion</td>
-				
-					 
+
+
 				<?php } ?>
-				
+
 				<?php echo $datos; ?>
 		</table>
 	</div>
 ```
+
 #### Parte del controllador
+
 ```
-	if (isset($_POST['btnbuscar'])) 
+	if (isset($_POST['btnbuscar']))
 		{
 			$buscar = $_POST['txtbuscar'];
 			$result = $obj->Buscar($buscar);
@@ -220,7 +240,9 @@ Primero tendriamos el codigo HTML con PHP para la generacion de las columnas de 
 			$datos = $obj->Tabla_gen($result);
 		}
 ```
+
 #### Parte del modelo
+
 ```
 	//Funcion para traer el listado de la tabla donde se muestren todos los productos de la base de datos
 	function Buscartodo()
@@ -252,3 +274,27 @@ Primero tendriamos el codigo HTML con PHP para la generacion de las columnas de 
 Esto en conjunto nos generaria una tabla como la siguiente:
 
 <image src="./img/ejemplovista.png" alt="Muestra del ejemplo anterior">
+
+## ¿Que es un controlador en MVC?
+
+<p style="text-align:justify">
+En el patrón de diseño MVC (Modelo-Vista-Controlador), un controlador es una parte del software que actúa como intermediario entre el modelo y la vista. En resumen, un controlador se encarga de recibir las solicitudes del usuario (a través de la vista), procesarlas utilizando el modelo y devolver la respuesta a la vista para que sea presentada al usuario.<p>
+
+<img src="https://codigofacilito.com/photo_generales_store/29.jpg" style="height:300px; display:flex; margin:auto"></img>
+
+### Ejemplos de MVC
+<p style="text-align:justify">
+Este seria un ejemplo de un controlador en un MVC donde este necesita de la llamada del modelo para poder obtener los datos de la BD y tambien requiere a la vista para poder mandarle los datos y que los visualice el usuario, tambien teniendo una variable donde hace el llamado a los productos usando un metodo del modelo para poder	obtener esos datos de los productos.
+</p>
+```
+<?php
+
+// Call model
+require_once "models/productsModel.php";
+$products = Product::getAllProducts();
+
+// Call the view
+require_once "views/productsView.php";
+
+?>
+```
