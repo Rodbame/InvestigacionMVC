@@ -6,10 +6,12 @@ El modelo vista controlador se basa en un estilo de arquitectura de software el 
 
 Aunque en esta investigacion solo se manejara de manera mas especifica la parte del modelo.
 </p>
+
 ## ¿Que es el modelo en MVC?
 <p style="text-align:justify">
 El modelo es responsable de la gestión de los datos de la aplicación, así como de la lógica de negocio y del comportamiento de la aplicación. En otras palabras, el modelo representa la información subyacente y las reglas de negocio que se aplican a esa información. Por ejemplo, si se está diseñando una aplicación de gestión de pedidos, el modelo podría contener información sobre los productos, los clientes y los pedidos, así como reglas de negocio para validar los pedidos o para calcular los costos.
 </p>
+
 ## Aplicaciones del modelo
 
 - **Gestión de datos:** El modelo se utiliza para gestionar los datos de la aplicación, incluyendo la creación, lectura, actualización y eliminación de los mismos. El modelo también se encarga de aplicar las reglas de negocio y realizar la validación de los datos.
@@ -130,6 +132,7 @@ class Modelo {
 <p style="text-align:justify">
 Este ejemplo simplemente lo que hace es el obtener 2 parametros para despues darles un valor y realizar la operación que queramos realizar, en el caso de este ejemplo lo que se hace es obtener esos dos parametros con el fin de multiplicarlos, esto puede servir por ejemplo al momento de realizar una calculadora de practica o algo por el estilo.
 </p>
+
 # Investigacion sobre las vistas en el MVC
 
 ## ¿Que es la vista en MVC?
@@ -193,6 +196,7 @@ Y el resultado de esta pagina nos daria la siguiente interfaz:
 <p style="text-align:justify">
 Esta vista seria con la que el usuario podria interactuar y donde mediante los inputs llenaria la informacion necesaria para crear el usuario en este caso, pudiendo asi enviar la informacion por el controlador y este mandando esos datos a el modelo para poder realizar por ejemplo un insert en mysql.
 </p>
+
 ## Representacion de datos hacia el usuario
 
 <p style="text-align:justify">
