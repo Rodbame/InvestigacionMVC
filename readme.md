@@ -248,7 +248,9 @@ Primero tendriamos el codigo HTML con PHP para la generacion de las columnas de 
 		return $tabla;
 	}
 ```
+
 Esto en conjunto con  nos generaria una tabla como la siguiente:
+
 <image src="./img/ejemplovista.png" alt="Muestra del ejemplo anterior">
-
-
+=======
+>>>>>>> 91ab2ccc416064c2f1470a757eae7115708bbec8
